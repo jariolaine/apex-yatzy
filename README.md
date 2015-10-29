@@ -1,7 +1,7 @@
 # apex-yatzy
 Oracle APEX - Yatzy
 
-[LICENSE](https://github.com/jariolaine/apex-yatzy/blob/master/README.md)
+[LICENSE](https://github.com/jariolaine/apex-yatzy/blob/master/LICENSE)
 
 Cascading Style Sheet [yatzy.css](https://github.com/jariolaine/apex-yatzy/blob/master/css/yatzy.css) of the application uses 3party code that is listed here:
 
