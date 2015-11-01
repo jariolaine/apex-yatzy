@@ -1,8 +1,8 @@
 /*
 *	This CSS file is based on:
-*	- normalize.css v3.0.3 github.com/necolas/normalize.css
-*	- CSS Dice: An Experiment by Jonathan Sampson - @jonathansampson http://sampsonblog.com/tag/web-design
-*	- "Simpliste" template and "Simple" skin by Renat Rafikov http://cssr.ru/simpliste/
+*	- CSS Dice: An Experiment by Jonathan Sampson - @jonathansampson http://sampsonblog.com/289/of-dice-dabblet-and-css
+*	- normalize.css v3.0.3 https://github.com/necolas/normalize.css Copyright (c) Nicolas Gallagher and Jonathan Neal
+*	- "Simpliste" template and "Simple" skin by Renat Rafikov http://cssr.ru/simpliste/ Copyright (c) 2012 Renat Rafikov
 */
 
 /*
@@ -153,8 +153,6 @@ h1,h2,h3 { font-weight:normal; }
 .info { padding:0 1% 1em 1%; }
 .board {
 	background: #070;
-	background: -webkit-linear-gradient(#060, #070, #060);
-	background: linear-gradient(#060, #070, #060);
 	border-radius: 5px;
 	box-shadow:	0 0 9px 3px #333 inset,
 				0 0 50px #111 inset,
@@ -168,9 +166,11 @@ h1,h2,h3 { font-weight:normal; }
 	color:#717171;
 	font-size:12px;
 }
+/*
 .clearfix:before,
 .clearfix:after { content:""; display:table; }
 .clearfix:after { clear:both; }
+*/
 /* Columns */
 .col_25 {
   width:23%;

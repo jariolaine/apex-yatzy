@@ -47,7 +47,7 @@ as
 	);
 --------------------------------------------------------------------------------
 	procedure start_game (
-		p_username		in varchar2
+		p_player_name	in varchar2
 	);
 --------------------------------------------------------------------------------
 	procedure calc_possible_points (
@@ -81,15 +81,17 @@ as
 	--	package private constants
 
 	--	player name cookie
-	c_player_name_cookie		constant varchar2(30) := 'yatzy_player';
+	c_player_name_cookie		constant varchar2(30)	:= 'yatzy_player';
+	c_cookie_expires			constant date			:= sysdate + 365;
 	
 	--	APEX messages
-	c_enter_points_msg			constant varchar2(30) := 'ENTER_POINTS';
-	c_start_round_msg			constant varchar2(30) := 'START_ROUND';
-	c_continue_round_msg		constant varchar2(30) := 'CONTINUE_ROUND';
-	c_end_round_msg				constant varchar2(30) := 'END_ROUND';
+	c_enter_points_msg			constant varchar2(30)	:= 'ENTER_POINTS';
+	c_start_round_msg			constant varchar2(30)	:= 'START_ROUND';
+	c_continue_round_msg		constant varchar2(30)	:= 'CONTINUE_ROUND';
+	c_end_round_msg				constant varchar2(30)	:= 'END_ROUND';
 	
-	--	error codes and related messages from APEX
+	--	error codes and APEX messages
+	c_generic_error				constant varchar2(30)	:= 'GENERIC_ERROR';
 	c_enter_points_no_data		constant number			:= -20001;
 	c_enter_points_no_data_msg	constant varchar2(30)	:= 'ENTER_POINTS_NO_DATA';
 	
@@ -182,6 +184,27 @@ as
 		-- return sorted array
 		return l_num_tab;
 	end sort_num_tab;
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--	this procedure saves player name to cookie
+--
+--	change log:
+--	18.10.2015 JLa / created
+--
+--------------------------------------------------------------------------------
+	procedure send_player_name_cookie (
+		p_player_name	in varchar2
+	)
+	as
+	begin
+		sys.owa_util.mime_header('text/html', false);
+		sys.owa_cookie.send(
+			name    => c_player_name_cookie,
+			value   => p_player_name,
+			expires => c_cookie_expires
+		);
+		--sys.owa_util.http_header_close;
+	end send_player_name_cookie;
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --	this function returns distinct values from array
@@ -720,17 +743,14 @@ as
 --
 --------------------------------------------------------------------------------
 	procedure start_game (
-		p_username		in varchar2
+		p_player_name	in varchar2
 	)
 	as
 	begin
-		apex_authentication.send_login_username_cookie (
-			p_username => p_username,
-			p_cookie_name => c_player_name_cookie
-		);
+		send_player_name_cookie ( p_player_name );
 		apex_custom_auth.set_session_id_to_next_value;
 		apex_authentication.post_login(
-			p_username => p_username,
+			p_username => p_player_name,
 			p_password => null,
 			p_uppercase_username => false
 		);
@@ -857,6 +877,7 @@ as
 			and not p_error.apex_error_code = 'APEX.AUTHORIZATION.ACCESS_DENIED'
 			and not p_error.apex_error_code = 'APEX.SESSION_STATE.RESTRICTED_CHAR.WEB_SAFE'
 			and not p_error.apex_error_code = 'APEX.SESSION_STATE.RESTRICTED_CHAR.US_ONLY'
+			and not p_error.apex_error_code = 'APEX.PAGE.DUPLICATE_SUBMIT'
 			then
 				-- log error to application debug information
 				apex_debug.error(
@@ -867,11 +888,7 @@ as
 				);
 				--	Change the message to the generic error message 
 				--	which doesn't expose any sensitive information.
-				if p_error.apex_error_code = 'APEX.PAGE.DUPLICATE_SUBMIT' then
-					l_result.message := apex_lang.message ( 'DUPLICATE_SUBMIT' );
-				else
-					l_result.message := apex_lang.message ( 'GENERIC_ERROR' );
-				end if;
+				l_result.message := apex_lang.message ( c_generic_error );
 				
 				l_result.additional_info := null;
 			end if;
@@ -888,7 +905,9 @@ as
 			--	If we don't find the constraint in our lookup table we fallback to
 			--	the original ORA error message.
 			if p_error.ora_sqlcode in ( -1, -2091, -2290, -2291, -2292 ) then
+				
 				l_constraint_name := apex_error.extract_constraint_name ( p_error => p_error );
+				
 				l_err_msg := apex_lang.message ( l_constraint_name );
 				-- not every constraint has to be in our lookup table
 				if not l_err_msg = l_constraint_name then
@@ -909,6 +928,7 @@ as
 			if p_error.ora_sqlcode is not null and l_result.message = p_error.message then
 				l_result.message := apex_error.get_first_ora_error_text ( p_error => p_error );
 			end if;
+			
 			--	If no associated page item/tabular form column has been set, we can use
 			--	apex_error.auto_set_associated_item to automatically guess the affected
 			--	error field by examine the ORA error for constraint names or column names.
@@ -918,6 +938,7 @@ as
 					p_error_result	=> l_result
 				);
 			end if;
+			
 		end if;
 		return l_result;
 	end apex_error_handler;
