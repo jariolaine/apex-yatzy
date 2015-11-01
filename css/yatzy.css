@@ -1,12 +1,15 @@
 /*
+*
 *	This CSS file is based on:
 *	- CSS Dice: An Experiment by Jonathan Sampson - @jonathansampson http://sampsonblog.com/289/of-dice-dabblet-and-css
 *	- normalize.css v3.0.3 https://github.com/necolas/normalize.css Copyright (c) Nicolas Gallagher and Jonathan Neal
 *	- "Simpliste" template and "Simple" skin by Renat Rafikov http://cssr.ru/simpliste/ Copyright (c) 2012 Renat Rafikov
+*
 */
 
 /*
-	CSS Reset: Based on normalize.css v3.0.3 github.com/necolas/normalize.css
+	CSS Reset: Based on normalize.css v3.0.3 https://github.com/necolas/normalize.css
+	Copyright (c) Nicolas Gallagher and Jonathan Neal
 */
 html { font-family: Verdana,sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: #f2f2f2; }
@@ -30,17 +33,6 @@ h1 { font-size: 2em; margin: 0.67em 0; }
 h1,h2,h3 { font-weight:normal; }
 /* End CSS Reset */
 
-/**** Dice item plugin ****/
-.die-container {
-	width: 70px;
-	height: 80px;
-	border-radius: 8px;
-	margin: 0 0 8px 8px
-}
-.hold-die {
-	background-color: #00bb00;
-	box-shadow: 0 0 1px 1px #2d2 inset;
-}
 
 /*
 	CSS Dice: An Experiment by Jonathan Sampson - @jonathansampson http://sampsonblog.com/tag/web-design
@@ -127,6 +119,7 @@ h1,h2,h3 { font-weight:normal; }
 
 /*
 	Theme: Based on "Simpliste" template and "Simple" skin by Renat Rafikov http://cssr.ru/simpliste
+	Copyright (c) 2012 Renat Rafikov
 */
 
 /**** Helper classes ****/
@@ -317,6 +310,18 @@ h1,h2,h3 { font-weight:normal; }
 	margin: 3px;
 }
 
+/**** Dice item plugin ****/
+.die-container {
+	width: 70px;
+	height: 80px;
+	border-radius: 8px;
+	margin: 0 0 8px 8px
+}
+.hold-die {
+	background-color: #00bb00;
+	box-shadow: 0 0 1px 1px #2d2 inset;
+}
+
 /**** Label ****/
 span.label-error {
     color: #ec252e;
@@ -414,7 +419,6 @@ label.label-optional {
 	padding-top: 2px;
 	padding-bottom: 2px;
 }
-
 
 /**** responsive ****/
 @media only screen and (max-width:750px) { /* Tablet */
