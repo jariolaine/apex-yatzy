@@ -2,11 +2,13 @@
 
 Yatzy for Oracle Apllication Express
 
-DESCRIPTION
+
+##### DESCRIPTION
 
 Solitaire Yatzy game made with Oracle Apllication Express (APEX).
 
-INSTALLATION
+
+##### INSTALLATION
 
 This application must be installed in Oracle Application Express 5.0 or higher.
 
@@ -16,7 +18,8 @@ This application must be installed in Oracle Application Express 5.0 or higher.
 4. Browse and locate the installer file, yatzy.sql
 5. Follow wizard instructions and when prompted, select to install supporting objects
 
-DEINSTALLATION
+
+##### DEINSTALLATION
 
 To completely remove the application and all the objects created to support it:
 
@@ -28,10 +31,13 @@ To completely remove the application and all the objects created to support it:
 3. Click [Deinstall]
 
 
-[LICENSE](https://github.com/jariolaine/apex-yatzy/blob/master/LICENSE)
+##### [LICENSE](https://github.com/jariolaine/apex-yatzy/blob/master/LICENSE)
 
 
-THIRD-PARTY COMPONENTS
+##### [DEMO](https://apex.oracle.com/pls/apex/f?p=53139)
+
+
+##### THIRD-PARTY COMPONENTS
 
 Cascading Style Sheets 
 [yatzy.css](https://github.com/jariolaine/apex-yatzy/blob/master/css/yatzy.css) and
