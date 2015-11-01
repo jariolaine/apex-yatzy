@@ -3,7 +3,7 @@ Oracle APEX - Yatzy
 
 [LICENSE](https://github.com/jariolaine/apex-yatzy/blob/master/LICENSE)
 
-### Cascading Style Sheet [yatzy.css](https://github.com/jariolaine/apex-yatzy/blob/master/css/yatzy.css) of the application uses parts from 3party code that is listed here:
+Cascading Style Sheet [yatzy.css](https://github.com/jariolaine/apex-yatzy/blob/master/css/yatzy.css) of the application uses parts from 3party code that is listed here:
 
 ---
 
@@ -24,6 +24,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ---
 
 ["Simpliste" is a simple responsive HTML5 template](http://cssr.ru/simpliste/)
+
 Copyright (c) 2012 Renat Rafikov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
