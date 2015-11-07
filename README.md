@@ -13,7 +13,7 @@ This application must be installed in Oracle Application Express 5.0 or higher.
 1. Access your target Workspace
 2. Select the Application Builder
 3. Click [Import >]
-4. Browse and locate the installer file, yatzy.sql
+4. Browse and locate the installer file, apex-yatzy.sql
 5. Follow wizard instructions and when prompted, select to install supporting objects
 
 
